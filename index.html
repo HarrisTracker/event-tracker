@@ -35,29 +35,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* TOP NAVIGATION BAR */
-        header {
-            padding: 1.5rem 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-subtle);
-            font-family: var(--font-sans);
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-right: 1.5rem;
-            transition: color 0.2s;
-        }
-
-        nav a:hover { color: var(--text-dark); }
-
         /* HERO SECTION */
         .hero {
             padding: 4rem 8% 3rem 8%;
@@ -282,14 +259,6 @@
 </head>
 <body>
 
-    <header>
-        <nav>
-            <a href="#">Timeline</a>
-            <a href="#">Statistics</a>
-            <a href="#">About the archive</a>
-        </nav>
-    </header>
-
     <section class="hero">
         <div>
             <div class="hero-subtitle">A CIVIC RECORD / 01.20.25–PRESENT</div>
@@ -403,15 +372,6 @@
         // EDIT YOUR UPCOMING EVENTS HERE
         const upcomingEvents = [
             // Leave array empty [] to show the "No verified dates indexed yet" placeholder card.
-            // Example entry:
-            // {
-            //     date: "Oct 15, 2026",
-            //     category: "Speech",
-            //     title: "Keynote Address at Civic Leadership Summit",
-            //     description: "Remarks on community advocacy and future policy initiatives.",
-            //     location: "Chicago, IL",
-            //     image: false
-            // }
         ];
 
         function render(items) {
