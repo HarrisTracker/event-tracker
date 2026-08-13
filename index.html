@@ -8,7 +8,7 @@
     <!-- Google Fonts import for matching typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -82,7 +82,8 @@
 
         .at-a-glance-title {
             font-family: var(--font-sans);
-            font-size: 0.7rem;
+            font-size: 0.75rem;
+            font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--text-muted);
@@ -100,7 +101,7 @@
         }
 
         .stat-label { color: var(--text-muted); }
-        .stat-value { font-weight: 500; color: var(--accent-gold); } /* Updated to apply gold color to all stat values */
+        .stat-value { font-weight: 500; color: var(--accent-gold); }
 
         /* MAIN CONTENT AREA */
         .content-area { padding: 0 8% 4rem 8%; }
@@ -192,11 +193,19 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Updated to match location font (sans-serif) */
         .event-card p {
-            font-family: var(--font-serif);
-            font-size: 0.9rem;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .event-footer {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-top: 0.5rem;
         }
 
         .event-location {
@@ -206,6 +215,20 @@
             display: flex;
             align-items: center;
             gap: 0.3rem;
+        }
+
+        /* Added Hyperlink styling */
+        .event-link {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            color: var(--text-dark);
+            text-decoration: underline;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .event-link:hover {
+            color: var(--accent-gold);
         }
 
         /* FOOTER */
@@ -282,6 +305,7 @@
 
     <script>
         // EDIT YOUR PAST EVENT DATA HERE
+        // Add video/source URLs to the 'link' property below
         const eventsData = [
             {
                 date: "Aug 13, 2025",
@@ -289,6 +313,7 @@
                 title: "Keynote address on civic involvement",
                 description: "Public address covering civic participation and public service leadership.",
                 location: "Chicago, IL",
+                link: "https://youtube.com", // Paste video/source URL here
                 image: false
             },
             {
@@ -297,6 +322,7 @@
                 title: "Interview on the future of American democracy",
                 description: "Detailed conversation discussing challenges facing democratic institutions and civic engagement.",
                 location: "Washington, DC",
+                link: "", // Leave empty if no link exists
                 image: false
             },
             {
@@ -305,6 +331,7 @@
                 title: "Private leadership gathering",
                 description: "An informal discussion with community leaders regarding regional economic priorities.",
                 location: "San Francisco, CA",
+                link: "",
                 image: false
             },
             {
@@ -313,6 +340,7 @@
                 title: "Address at the 2025 International Women's Day event",
                 description: "Keynote address focused on global economic empowerment and leadership opportunities.",
                 location: "Los Angeles, CA",
+                link: "",
                 image: false
             },
             {
@@ -321,6 +349,7 @@
                 title: "Conversation at the 2025 Leading Women Defined Summit",
                 description: "Moderated discussion covering public service, governance, and leadership paradigms.",
                 location: "New York, NY",
+                link: "",
                 image: false
             },
             {
@@ -329,6 +358,7 @@
                 title: "Departure from the Vice Presidency",
                 description: "Final transition and official public departure following her term.",
                 location: "Washington, DC",
+                link: "",
                 image: false
             }
         ];
@@ -346,7 +376,10 @@
                             <span class="event-tag">${item.category}</span>
                             <h3>${item.title}</h3>
                             <p>${item.description}</p>
-                            <div class="event-location">📍 ${item.location}</div>
+                            <div class="event-footer">
+                                <div class="event-location">📍 ${item.location}</div>
+                                ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="event-link">View Source ↗</a>` : ''}
+                            </div>
                         </div>
                     </div>
                 </div>
