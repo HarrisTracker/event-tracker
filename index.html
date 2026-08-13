@@ -193,7 +193,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Updated to match location font (sans-serif) */
         .event-card p {
             font-family: var(--font-sans);
             font-size: 0.85rem;
@@ -217,7 +216,6 @@
             gap: 0.3rem;
         }
 
-        /* Added Hyperlink styling */
         .event-link {
             font-family: var(--font-sans);
             font-size: 0.75rem;
@@ -305,7 +303,7 @@
 
     <script>
         // EDIT YOUR PAST EVENT DATA HERE
-        // Add video/source URLs to the 'link' property below
+        // Customize the 'link' and 'linkText' for each box individually!
         const eventsData = [
             {
                 date: "Aug 13, 2025",
@@ -313,7 +311,8 @@
                 title: "Keynote address on civic involvement",
                 description: "Public address covering civic participation and public service leadership.",
                 location: "Chicago, IL",
-                link: "https://youtube.com", // Paste video/source URL here
+                link: "https://youtube.com", 
+                linkText: "Watch Speech ↗", // Custom text for this box
                 image: false
             },
             {
@@ -322,7 +321,8 @@
                 title: "Interview on the future of American democracy",
                 description: "Detailed conversation discussing challenges facing democratic institutions and civic engagement.",
                 location: "Washington, DC",
-                link: "", // Leave empty if no link exists
+                link: "https://nytimes.com", 
+                linkText: "Read Full Article ↗", // Custom text for this box
                 image: false
             },
             {
@@ -332,6 +332,7 @@
                 description: "An informal discussion with community leaders regarding regional economic priorities.",
                 location: "San Francisco, CA",
                 link: "",
+                linkText: "",
                 image: false
             },
             {
@@ -341,6 +342,7 @@
                 description: "Keynote address focused on global economic empowerment and leadership opportunities.",
                 location: "Los Angeles, CA",
                 link: "",
+                linkText: "",
                 image: false
             },
             {
@@ -350,6 +352,7 @@
                 description: "Moderated discussion covering public service, governance, and leadership paradigms.",
                 location: "New York, NY",
                 link: "",
+                linkText: "",
                 image: false
             },
             {
@@ -359,6 +362,7 @@
                 description: "Final transition and official public departure following her term.",
                 location: "Washington, DC",
                 link: "",
+                linkText: "",
                 image: false
             }
         ];
@@ -378,7 +382,7 @@
                             <p>${item.description}</p>
                             <div class="event-footer">
                                 <div class="event-location">📍 ${item.location}</div>
-                                ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="event-link">View Source ↗</a>` : ''}
+                                ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="event-link">${item.linkText || 'View Source ↗'}</a>` : ''}
                             </div>
                         </div>
                     </div>
