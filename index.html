@@ -174,6 +174,14 @@
             letter-spacing: 0.05em;
         }
 
+        /* TAGS CONTAINER & STYLING */
+        .event-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-bottom: 0.5rem;
+        }
+
         .event-tag {
             display: inline-block;
             font-family: var(--font-sans);
@@ -183,7 +191,6 @@
             padding: 0.2rem 0.5rem;
             border: 1px solid var(--border-subtle);
             color: var(--text-muted);
-            margin-bottom: 0.5rem;
         }
 
         .event-card h3 {
@@ -272,7 +279,7 @@
             </div>
             <div class="stat-row">
                 <span class="stat-label">Last Recorded</span>
-                <span class="stat-value" id="stat-last">August 13, 2025</span>
+                <span class="stat-value" id="stat-last">August 13, 2026</span>
             </div>
         </div>
     </section>
@@ -300,11 +307,12 @@
     </footer>
 
     <script>
-        // EDIT YOUR PAST EVENT DATA HERE
+        // EDIT YOUR EVENT DATA HERE
+        // Notice `category` can now accept an array: ["Speech", "Rally/Fundraiser"] or a single string
         const eventsData = [
             {
                 date: "Aug 13, 2026",
-                category: "Interview/Podcast",
+                category: ["Interview/Podcast", "Fireside Chat"],
                 title: "Assembly Required with Stacey Abrams",
                 description: "VP Harris shares what she’s hearing from voters on the ground as she travels through the South. They also talk about the new attitude Democrats need to win elections, fight back against Trump, and stop his authoritarian agenda.",
                 location: "Online",
@@ -314,7 +322,7 @@
             },
             {
                 date: "Aug 12, 2026",
-                category: "Other",
+                category: ["Rally/Fundraiser", "Other"],
                 title: "Women for Ossoff",
                 description: "VP Harris joined Senator Ossoff for a virtual gathering celebrating women’s civic engagement, leadership, and the issues shaping the lives of women across Georgia.",
                 location: "Online",
@@ -324,7 +332,7 @@
             },
             {
                 date: "Aug 7, 2026",
-                category: "Fireside Chat", "Rally/Fundraiser",
+                category: ["Rally/Fundraiser", "Fireside Chat"],
                 title: "Inspire the City Back-to-School Student Rally",
                 description: "VP Harris joined local students, educators, and community leaders at the annual Inspire the City Back-to-School Student Rally to kick off the 2026–2027 academic year.",
                 location: "New Orleans, LA",
@@ -334,7 +342,7 @@
             },
             {
                 date: "May 6, 2025",
-                category: "Speech",
+                category: ["Speech", "Rally/Fundraiser"],
                 title: "Address at the 2025 International Women's Day event",
                 description: "Keynote address focused on global economic empowerment and leadership opportunities.",
                 location: "Los Angeles, CA",
@@ -344,7 +352,7 @@
             },
             {
                 date: "Feb 12, 2025",
-                category: "Book Tour",
+                category: ["Book Tour", "Fireside Chat"],
                 title: "Conversation at the 2025 Leading Women Defined Summit",
                 description: "Moderated discussion covering public service, governance, and leadership paradigms.",
                 location: "New York, NY",
@@ -354,7 +362,7 @@
             },
             {
                 date: "Jan 20, 2025",
-                category: "Other",
+                category: ["Other"],
                 title: "Departure from the Vice Presidency",
                 description: "Final transition and official public departure following her term.",
                 location: "Washington, DC",
@@ -366,25 +374,32 @@
 
         function render(items) {
             const container = document.getElementById('events-container');
-            container.innerHTML = items.map(item => `
-                <div class="event-item">
-                    <div class="event-date">${item.date}</div>
-                    <div class="event-card">
-                        <div class="event-img">
-                            ${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover;">` : 'picture box'}
-                        </div>
-                        <div>
-                            <span class="event-tag">${item.category}</span>
-                            <h3>${item.title}</h3>
-                            <p>${item.description}</p>
-                            <div class="event-footer">
-                                <div class="event-location">📍 ${item.location}</div>
-                                ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="event-link">${item.linkText || 'View Source ↗'}</a>` : ''}
+            container.innerHTML = items.map(item => {
+                // Ensure category is always an array for consistent rendering
+                const categories = Array.isArray(item.category) ? item.category : [item.category];
+                
+                return `
+                    <div class="event-item">
+                        <div class="event-date">${item.date}</div>
+                        <div class="event-card">
+                            <div class="event-img">
+                                ${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover;">` : 'picture box'}
+                            </div>
+                            <div>
+                                <div class="event-tags">
+                                    ${categories.map(cat => `<span class="event-tag">${cat}</span>`).join('')}
+                                </div>
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                                <div class="event-footer">
+                                    <div class="event-location">📍 ${item.location}</div>
+                                    ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="event-link">${item.linkText || 'View Source ↗'}</a>` : ''}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
             
             document.getElementById('stat-total').innerText = eventsData.length;
             if (eventsData.length > 0) {
@@ -399,7 +414,11 @@
             if (type === 'all') {
                 render(eventsData);
             } else {
-                render(eventsData.filter(e => e.category === type));
+                // Check if the selected filter tag exists in the event's category array/string
+                render(eventsData.filter(e => {
+                    const categories = Array.isArray(e.category) ? e.category : [e.category];
+                    return categories.includes(type);
+                }));
             }
         }
 
