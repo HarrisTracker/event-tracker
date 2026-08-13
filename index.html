@@ -14,7 +14,6 @@
         :root {
             --bg-main: #F4EFE6;         /* Exact creamy beige background */
             --bg-card: #FAF8F5;         /* Slightly lighter cream for cards */
-            --bg-dark: #142334;         /* Deep navy blue for bottom section */
             --text-dark: #222222;       /* Charcoal header text */
             --text-muted: #6B7280;      /* Muted gray subtext */
             --accent-gold: #C89B65;     /* Warm tan/gold accent */
@@ -233,34 +232,6 @@
             gap: 0.3rem;
         }
 
-        /* DARK GEOGRAPHY SECTION */
-        .geography-section {
-            background-color: var(--bg-dark);
-            color: white;
-            padding: 5rem 8%;
-        }
-
-        .geography-section .hero-subtitle { color: rgba(255, 255, 255, 0.5); }
-
-        .geography-section h2 {
-            font-family: var(--font-serif);
-            font-size: 2.8rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-
-        .map-box {
-            margin-top: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-sans);
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
         /* FOOTER */
         footer {
             padding: 4rem 8%;
@@ -285,7 +256,6 @@
     <header>
         <nav>
             <a href="#">Timeline</a>
-            <a href="#">Map</a>
             <a href="#">Statistics</a>
             <a href="#">About the archive</a>
         </nav>
@@ -338,13 +308,6 @@
         </div>
     </main>
 
-    <section class="geography-section">
-        <div class="hero-subtitle">GEOGRAPHY</div>
-        <h2>The record, on the ground.</h2>
-        <p style="color: rgba(255,255,255,0.6); font-family: var(--font-serif);">Locations represented in the current archive. Select a point to open its record.</p>
-        <div class="map-box">[ Interactive Map Container ]</div>
-    </section>
-
     <footer>
         <p>This is a living public-records project. The starter index covers appearances reported after January 20, 2025 and is designed to grow as new source material is found.</p>
         <p class="disclaimer">This archive is not affiliated with Kamala Harris or any event organizer.</p>
@@ -357,7 +320,7 @@
                 date: "Jun 12, 2025",
                 category: "Interview/Podcast",
                 title: "Interview on the future of American democracy",
-                description: "loremlorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+                description: "Detailed conversation discussing challenges facing democratic institutions and civic engagement.",
                 location: "Washington, DC",
                 image: false
             },
@@ -365,7 +328,7 @@
                 date: "Apr 30, 2025",
                 category: "Informal Visits",
                 title: "Private leadership gathering",
-                description: "loremlorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+                description: "An informal discussion with community leaders regarding regional economic priorities.",
                 location: "San Francisco, CA",
                 image: false
             },
@@ -373,7 +336,7 @@
                 date: "May 6, 2025",
                 category: "Speech",
                 title: "Address at the 2025 International Women's Day event",
-                description: "loremlorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+                description: "Keynote address focused on global economic empowerment and leadership opportunities.",
                 location: "Los Angeles, CA",
                 image: false
             },
@@ -381,7 +344,7 @@
                 date: "Feb 12, 2025",
                 category: "Book Tour",
                 title: "Conversation at the 2025 Leading Women Defined Summit",
-                description: "loremlorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+                description: "Moderated discussion covering public service, governance, and leadership paradigms.",
                 location: "New York, NY",
                 image: false
             },
@@ -389,7 +352,7 @@
                 date: "Jan 20, 2025",
                 category: "Other",
                 title: "Departure from the Vice Presidency",
-                description: "loremlorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+                description: "Final transition and official public departure following her term.",
                 location: "Washington, DC",
                 image: false
             }
