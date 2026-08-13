@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where is Kamala Harris? | Event Archive</title>
+    <style>
+        /* CSS STYLES - Recreating the aesthetic */
+        :root {
+            --bg-page: #FAF5EE; /* The cream background */
+            --bg-section-dark: #122C4A; /* The dark navy section */
+            --text-primary: #1A1A1A; /* Dark charcoal/black */
+            --text-secondary: #707070; /* Muted gray for descriptions */
+            --accent-gold: #C28D43; /* The title and summary gold */
+            --border-light: #E0E0E0; /* Thin gray borders */
+            --font-main: 'Georgia', 'Times New Roman', serif; /* Elegant serif look */
+            --font-sans: 'Arial', sans-serif; /* For tags and labels */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* UTILITY CLASSES */
+        .sans { font-family: var(--font-sans); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); }
+        .accent { color: var(--accent-gold); }
+
+        /* HEADER & HERO */
+        header { padding: 40px 10%; border-bottom: 1px solid var(--border-light); }
+        .nav-links { display: flex; gap: 20px; color: var(--text-secondary); font-size: 0.9rem;}
+        .top-meta { text-align: right; font-size: 0.8rem; color: var(--text-secondary); }
+
+        .hero { display: flex; justify-content: space-between; align-items: flex-start; padding: 60px 10%; }
+        .hero-main h1 { font-size: 3rem; font-weight: normal; margin: 0 0 15px 0; }
+        .hero-main p { color: var(--text-secondary); max-width: 500px; font-size: 1.1rem; }
+
+        .hero-summary { width: 300px; padding: 10px; border: 1px solid var(--border-light); font-size: 0.9rem;}
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .summary-label { font-weight: bold; }
+
+        /* TIMELINE/EVENTS SECTION */
+        #event-archive { padding: 20px 10%; }
+
+        /* FILTER TABS */
+        .filters { display: flex; gap: 10px; margin-bottom: 40px; }
+        .filter-btn {
+            background: none; border: 1px solid var(--border-light); border-radius: 4px;
+            padding: 8px 16px; cursor: pointer; color: var(--text-primary); transition: all 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover { background-color: var(--text-primary); color: white; border-color: var(--text-primary); }
+
+        /* EVENT LIST */
+        #event-list-container {
+            position: relative; /* Container for the left date column */
+        }
+
+        .event-entry {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        /* The Date column (left) */
+        .event-date {
+            width: 150px;
+            flex-shrink: 0;
+            padding-top: 15px;
+            text-align: right;
+            padding-right: 20px;
+            color: var(--text-secondary);
+        }
+
+        /* The Event Card (right) */
+        .event-card {
+            background: white;
+            padding: 25px;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            width: 100%;
+            display: flex;
+            gap: 20px;
+        }
+
+        .event-image-placeholder {
+            width: 130px; height: 130px; background-color: black; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0;
+        }
+
+        .event-details { display: flex; flex-direction: column; gap: 8px; }
+        .event-category { display: inline-block; padding: 4px 8px; border: 1px solid var(--border-light); border-radius: 4px; font-weight: bold; }
+        .event-details h3 { margin: 0; font-weight: normal; font-size: 1.4rem; }
+        .event-description { margin: 0; color: var(--text-secondary); font-size: 0.95rem; }
+        .event-location { color: var(--accent-gold); }
+
+        /* UPCOMING SECTION (DARK) */
+        #upcoming { background-color: var(--bg-section-dark); color: white; padding: 60px 10%; }
+        #upcoming h2 { margin: 0; font-weight: normal; font-size: 2.5rem; color: var(--bg-page); }
+        .placeholder-box { width: 300px; height: 200px; border: 1px solid #ffffff33; display: flex; align-items: center; justify-content: center; color: #ffffff77; margin-top: 20px; }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 40px 10%; border-top: 1px solid var(--border-light); font-size: 0.9rem; color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Header & Navigation -->
+    <header>
+        <div class="nav-links">
+            <a href="#">Timeline</a>
+            <a href="#">Map</a>
+            <a href="#">Statistics</a>
+            <a href="#">About the archive</a>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <div class="hero">
+        <div class="hero-main">
+            <p class="sans">A CIVIC RECORD / <span id="current-date">01.20.25-PRESENT</span></p>
+            <h1>Where is <span class="accent">Kamala Harris?</span></h1>
+            <p>An archive of public appearances since her vice presidency -- built for clarity and context.</p>
+        </div>
+        <div class="hero-summary">
+            <p class="sans" style="margin-top: 0;">AT A GLANCE <span style="float:right;">⚙</span></p>
+            <div class="summary-row"><span class="summary-label">Total Appearances</span> <span id="stat-appearances">5</span></div>
+            <div class="summary-row"><span class="summary-label">States</span> <span id="stat-states">7</span></div>
+            <div class="summary-row"><span class="summary-label">Most Common Type</span> <span class="accent" id="stat-type">Speech</span></div>
+            <div class="summary-row"><span class="summary-label">Last Recorded</span> <span class="accent" id="stat-last">June 12, 2025</span></div>
+        </div>
+    </div>
+
+    <!-- 3. Event Archive Section -->
+    <section id="event-archive">
+        <!-- Event Filters -->
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterEvents('all')">All types</button>
+            <button class="filter-btn" onclick="filterEvents('Interview/Podcast')">Interview/Podcast</button>
+            <button class="filter-btn" onclick="filterEvents('Book Tour')">Book Tour</button>
+            <button class="filter-btn" onclick="filterEvents('Speech')">Speech</button>
+            <button class="filter-btn" onclick="filterEvents('Informal Visits')">Informal Visits</button>
+            <button class="filter-btn" onclick="filterEvents('Upcoming appearances')">Upcoming appearances</button>
+        </div>
+
+        <!-- The Timeline Container -->
+        <div id="event-list-container">
+            <!-- EVENTS WILL BE INSERTED HERE BY JAVASCRIPT -->
+        </div>
+    </section>
+
+    <!-- 4. Map Section (Simplfied Dark placeholder) -->
+    <section id="upcoming">
+        <div class="hero-main">
+            <p class="sans" style="color: rgba(255,255,255,0.7);">GEOGRAPHY</p>
+            <h2>The record, on the ground.</h2>
+            <p style="color: rgba(255,255,255,0.7);">Locations represented in the current archive. Select a point to open its record.</p>
+        </div>
+        <!-- Simplified Map Placeholder (Use a map API here eventually) -->
+        <div style="margin-top: 30px; color: white;">
+            [Simplified Map Area placeholder]
+        </div>
+    </section>
+
+    <!-- 5. Footer -->
+    <footer>
+        <p>This is a living public-records project. The starter index covers appearances reported after January 20, 2025 and is designed to grow as new source material is found.</p>
+        <p class="sans">This archive is not affiliated with Kamala Harris or any event organizer.</p>
+    </footer>
+
+    <!-- JAVASCRIPT: The logic for rendering the events -->
+    <script>
+        // Set current date in hero
+        const now = new Date();
+        document.getElementById('current-date').innerText = now.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit' }) + "-PRESENT";
+
+        /*******************************************************
+         * EDIT THIS SECTION BELOW TO ADD NEW EVENTS
+         *******************************************************/
+        const allEvents = [
+            {
+                date: 'June 12, 2025',
+                category: 'Interview/Podcast',
+                title: 'Interview on the future of American democracy',
+                description: 'A detailed conversation discussing challenges facing democratic institutions.',
+                location: 'Washington, DC',
+                image: 'picture box' // Leave blank/false for black box, or add URL to image
+            },
+            {
+                date: 'April 30, 2025',
+                category: 'Informal Visits',
+                title: 'Private leadership gathering',
+                description: 'An informal discussion with community leaders regarding local challenges.',
+                location: 'San Francisco, CA',
+                image: false
+            },
+            {
+                date: 'May 6, 2025',
+                category: 'Speech',
+                title: 'Address at the 2025 International Women\'s Day event',
+                description: 'Keynote address focused on global women\'s empowerment initiatives.',
+                location: 'Los Angeles, CA',
+                image: false
+            },
+             {
+                date: 'Feb 12, 2025',
+                category: 'Book Tour',
+                title: 'Conversation at the 2025 Leading Women Defined Summit',
+                description: 'A moderate discussion regarding leadership paradigms.',
+                location: 'New York, NY',
+                image: false
+            },
+             {
+                date: 'Jan 20, 2025',
+                category: 'Other',
+                title: 'Departure from the Vice Presidency',
+                description: 'Final transition and public departure following her term.',
+                location: 'Washington, DC',
+                image: false
+            }
+            // <-- PASTE NEW EVENT DATA BLOCKS HERE, separated by commas
+        ];
+
+        /*******************************************************
+         * DO NOT EDIT BELOW (Logistics)
+         *******************************************************/
+
+        function renderEvents(eventsList) {
+            const container = document.getElementById('event-list-container');
+            container.innerHTML = ''; // Clear current
+
+            eventsList.forEach(event => {
+                const eventHtml = `
+                    <div class="event-entry">
+                        <div class="event-date sans">${event.date}</div>
+                        <div class="event-card">
+                            <div class="event-image-placeholder">
+                                ${event.image ? `<img src="${event.image}" style="width:100%;height:100%;object-fit:cover;" />` : 'picture box'}
+                            </div>
+                            <div class="event-details">
+                                <div><span class="event-category sans">${event.category}</span></div>
+                                <h3>${event.title}</h3>
+                                <p class="event-description">${event.description}</p>
+                                <p class="sans event-location">⊙ ${event.location}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += eventHtml;
+            });
+        }
+
+        function filterEvents(category) {
+            // Update button styles
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (category === 'all') {
+                renderEvents(allEvents);
+            } else {
+                const filtered = allEvents.filter(event => event.category === category);
+                renderEvents(filtered);
+            }
+        }
+
+        // Initial render (All events)
+        renderEvents(allEvents);
+
+        // Basic stats update (Simplified)
+        document.getElementById('stat-appearances').innerText = allEvents.length;
+        document.getElementById('stat-last').innerText = allEvents[0].date;
+    </script>
+</body>
+</html>
