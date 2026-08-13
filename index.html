@@ -82,7 +82,7 @@
 
         .at-a-glance-title {
             font-family: var(--font-sans);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--text-muted);
@@ -100,8 +100,7 @@
         }
 
         .stat-label { color: var(--text-muted); }
-        .stat-value { font-weight: 500; }
-        .stat-value.accent { color: var(--accent-gold); }
+        .stat-value { font-weight: 500; color: var(--accent-gold); } /* Updated to apply gold color to all stat values */
 
         /* MAIN CONTENT AREA */
         .content-area { padding: 0 8% 4rem 8%; }
@@ -234,7 +233,7 @@
         <div>
             <div class="hero-subtitle">A CIVIC RECORD / 01.20.25–PRESENT</div>
             <h1>Where is <br><i>Kamala Harris?</i></h1>
-            <p class="hero-description">An archive of public appearances since her vice presidency — built for clarity and context.</p>
+            <p class="hero-description">An archive of public appearances since her vice presidency -- built for clarity and context.</p>
         </div>
 
         <div class="at-a-glance">
@@ -244,7 +243,7 @@
             </div>
             <div class="stat-row">
                 <span class="stat-label">Total Appearances</span>
-                <span class="stat-value" id="stat-total">5</span>
+                <span class="stat-value" id="stat-total">6</span>
             </div>
             <div class="stat-row">
                 <span class="stat-label">States Visited</span>
@@ -252,11 +251,11 @@
             </div>
             <div class="stat-row">
                 <span class="stat-label">Most Common Type</span>
-                <span class="stat-value accent">Speech</span>
+                <span class="stat-value">Speech</span>
             </div>
             <div class="stat-row">
                 <span class="stat-label">Last Recorded</span>
-                <span class="stat-value accent" id="stat-last">August 13, 2026</span>
+                <span class="stat-value" id="stat-last">August 13, 2025</span>
             </div>
         </div>
     </section>
@@ -277,7 +276,7 @@
     </main>
 
     <footer>
-        <p>This is a public-records project that covers appearances reported after January 20, 2025 and is designed to grow as new events take place.</p>
+        <p>This is a living public-records project. The starter index covers appearances reported after January 20, 2025 and is designed to grow as new source material is found.</p>
         <p class="disclaimer">This archive is not affiliated with Kamala Harris or any event organizer.</p>
     </footer>
 
@@ -285,11 +284,11 @@
         // EDIT YOUR PAST EVENT DATA HERE
         const eventsData = [
             {
-                date: "August 13, 2025",
-                category: "Interview/Podcast",
-                title: "Assembly Required Podcast",
-                description: "VP Harris joins Stacey to share what she’s hearing from voters on the ground as she travels through the South. They also talk about the new attitude Democrats need to win elections, fight back against Trump, and stop his authoritarian agenda.",
-                location: "Online",
+                date: "Aug 13, 2025",
+                category: "Speech",
+                title: "Keynote address on civic involvement",
+                description: "Public address covering civic participation and public service leadership.",
+                location: "Chicago, IL",
                 image: false
             },
             {
@@ -330,7 +329,7 @@
                 title: "Departure from the Vice Presidency",
                 description: "Final transition and official public departure following her term.",
                 location: "Washington, DC",
-                image: ""
+                image: false
             }
         ];
 
